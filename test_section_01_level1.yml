@@ -1,5 +1,7 @@
 ---
 # CIS Ubuntu Linux 20.04 LTS Benchmark v1.1.0
+#
+# 1 Initial Setup
 
 mount:
   # 1.1.2 thru 1.1.5 Ensure /tmp is a separate mount with appropriate options
