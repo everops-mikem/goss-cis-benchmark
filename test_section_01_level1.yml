@@ -1,177 +1,77 @@
 ---
-# CIS Ubuntu Linux 20.04 LTS Benchmark v1.0.0
-#
-# 1 Initial Setup
-# 1.2.1 Ensure package manager repositories are configured (Manual): not implemented
-# 1.2.2 Ensure GPG keys are configured (Manual): not implemented
-# 1.3.2 Ensure sudo commands use pty (Automated): not implemented
-# 1.4 Filesystem Integrity Checking
-# 1.4.1 Ensure AIDE is installed (Automated) : not implemented
-# 1.4.2 Ensure filesystem integrity is regularly checked (Automated): not implemented
-# 1.5 Secure Boot Settings
-# 1.5.1 Ensure bootloader password is set (Automated): not implemented
-# 1.5.3 Ensure authentication required for single user mode (Automated): not implemented
+# CIS Ubuntu Linux 20.04 LTS Benchmark v1.1.0
+
+mount:
+  # 1.1.2 thru 1.1.5 Ensure /tmp is a separate mount with appropriate options
+  /tmp:
+    exists: {{.Vars.tmpMount.enabled}}
+    opts:
+    {{- range .Vars.shmMount.options}}
+      - {{.}}
+    {{end}}
+  # 1.1.6 thru 1.1.9 Ensure /dev/shm is a separate mount with appropriate options
+  /dev/shm:
+    exists: {{.Vars.shmMount.enabled}}
+    opts:
+    {{- range .Vars.shmMount.options}}
+      - {{.}}
+    {{end}}
+  # 1.1.10 /var is a separate partition - level 2
+  # 1.1.11 thru 1.1.14 /var/tmp is a separate partition with appropriate options - level 2
+  # 1.1.15 /var/logs is a separate partition - level 2
+  # 1.1.16 /var/audit is a separate partition - level 2
+  # 1.1.17 & 1.1.18 /home is a separate partition with nodev option - level 2
 
 command:
   # 1.1 Filesystem Configuration
   # 1.1.1 Disable unused filesystems
-  # 1.1.1.1 Ensure mounting of cramfs filesystems is disabled (Automated)
-  modprobe -n -v cramfs:
+  {{- range .Vars.disabledFilesystems}}
+  modprobe -n -v {{.}} 2>&1 | grep -E 'Module {{.}} not found|install\s+/bin/(true|false)':
     exit-status: 0
-    stdout:
-      - "install /bin/false"
-  lsmod | grep cramfs:
+  lsmod | grep {{.}}:
     exit-status: 1
+  {{end}}
 
-  # 1.1.1.2 Ensure mounting of freevxfs filesystems is disabled (Automated)
-  modprobe -n -v freevxfs:
-    exit-status: 0
-    stdout:
-      - "install /bin/false"
-  lsmod | grep freevxfs:
-    exit-status: 1
-
-  # 1.1.1.3 Ensure mounting of jffs2 filesystems is disabled (Automated)
-  modprobe -n -v jffs2:
-    exit-status: 0
-    stdout:
-      - "install /bin/false"
-  lsmod | grep jffs2:
-    exit-status: 1
-
-  # 1.1.1.4 Ensure mounting of hfs filesystems is disabled (Automated)
-  modprobe -n -v hfs:
-    exit-status: 0
-    stdout:
-      - "install /bin/false"
-  lsmod | grep hfs:
-    exit-status: 1
-
-  # 1.1.1.5 Ensure mounting of hfsplus filesystems is disabled (Automated)
-  modprobe -n -v hfsplus:
-    exit-status: 0
-    stdout:
-      - "install /bin/false"
-  lsmod | grep hfsplus:
-    exit-status: 1
-
-  # 1.1.1.6 Ensure mounting of udf filesystems is disabled (Automated)
-  modprobe -n -v udf | grep -E '(udf|install)':
-    exit-status: 0
-    stdout:
-      - "install /bin/true"
-  lsmod | grep udf:
-    exit-status: 1
-
-  # 1.1.2 Ensure /tmp is configured (Automated)
-  systemctl is-enabled tmp.mount:
-    exit-status: 0
-    stdout:
-      - "enabled"
-
-  # 1.1.3 Ensure nodev option set on /tmp partition (Automated)
-  mount | grep -E '\s/tmp\s' | grep -v nodev:
-    exit-status: 1
-
-  # 1.1.4 Ensure nosuid option set on /tmp partition (Automated)
-  mount | grep -E '\s/tmp\s' | grep -v nosuid:
-    exit-status: 1
-
-  # 1.1.5 Ensure noexec option set on /tmp partition (Automated)
-  mount | grep -E '\s/tmp\s' | grep -v noexec:
-    exit-status: 1
-
-  # 1.1.6 Ensure /dev/shm is configured (Automated)
-  mount | grep -E '\s/dev/shm\s':
-    exit-status: 1
-
-  # 1.1.7 Ensure nodev option set on /dev/shm partition (Automated)
-  mount | grep -E '\s/dev/shm\s' | grep -v nodev:
-    exit-status: 1
-
-  # 1.1.8 Ensure nosuid option set on /dev/shm partition (Automated)
-  mount | grep -E '\s/dev/shm\s' | grep -v nosuid:
-    exit-status: 1
-
-  # 1.1.9 Ensure noexec option set on /dev/shm partition (Automated)
-  mount | grep -E '\s/dev/shm\s' | grep -v noexec:
-    exit-status: 1
+  # 1.1.19 thru 1.1.21 set appropriate options on removable media partitions - level 1
+  #  - Site-local configuration verification (not applicable to cloud?)
 
   # 1.1.22 Ensure sticky bit is set on all world-writable directories (Automated)
-  df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null:
+  # Requires goss is executed as root user
+  df --local -P -x tmpfs -x devtmpfs -x overlay -x overlay2 | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \( -perm -0002 -a ! -perm -1000 \) 2>/dev/null:
     exit-status: 0
     stdout: []
     timeout: 1000000
 
-  # 1.1.23 Disable Automounting (Automated)
-  systemctl is-enabled autofs:
-    exit-status: 1
+  # 1.1.24 handled in 1.1.1 logic
+  # 1.2 Configure Software Updates - manual site-local configuration verification
+  # 1.3 Filesystem integrity checking (AIDE or similar tool installed, configured, and enabled)
+  #     - Zendesk uses osquery instead of AIDE - verify package is installed and service is running
 
-  # 1.1.24 Disable USB Storage (Automated)
-  modprobe -n -v usb-storage:
-    exit-status: 0
-    stdout:
-      - "install /bin/true"
-  lsmod | grep usb-storage:
-    exit-status: 1
+#  This is section 5.2 in CIS 1.1.0
+#  # 1.3 Configure sudo
+#  # 1.3.1 Ensure sudo is installed (Automated)
+#  dpkg -s sudo:
+#    exit-status: 0
+#
+#  # 1.3.3 Ensure sudo log file exists (Automated)
+#  grep -Ei '^\s*Defaults\s+logfile=\S+' /etc/sudoers /etc/sudoers.d/*:
+#    exit-status: 0
+#    stdout:
+#      - 'Defaults    logfile="/var/log/sudo.log"'
 
-  # 1.2 Configure Software Updates
-
-  # 1.3 Configure sudo
-  # 1.3.1 Ensure sudo is installed (Automated)
-  dpkg -s sudo:
-    exit-status: 0
-
-  # 1.3.3 Ensure sudo log file exists (Automated)
-  grep -Ei '^\s*Defaults\s+logfile=\S+' /etc/sudoers /etc/sudoers.d/*:
-    exit-status: 0
-    stdout:
-      - 'Defaults    logfile="/var/log/sudo.log"'
-
-  # 1.5.2 Ensure permissions on bootloader config are configured (Automated)
-  stat -c "%a-%u-%g-%U-%G" /boot/grub/grub.cfg:
-    exit-status: 0
-    stdout:
-      - "400-0-0-root-root"
-
-  # 1.6 Additional Process Hardening
-  # 1.6.1 Ensure XD/NX support is enabled (Automated)
+  # 1.5 Additional Process Hardening
+  # 1.5.1 Ensure XD/NX support is enabled (Automated)
   journalctl -k | egrep "NX.*protection:.*active":
     exit-status: 0
 
-  # 1.6.2 Ensure address space layout randomization (ASLR) is enabled (Automated)
-  sysctl kernel.randomize_va_space:
+  # 1.5.4 Ensure core dumps are restricted (Automated)
+  prlimit --noheading -o SOFT,HARD -c true:
     exit-status: 0
     stdout:
-      - "kernel.randomize_va_space = 2"
+      - "0 0"
 
-  # 1.6.3 Ensure prelink is disabled (Automated)
-  dpkg -s prelink:
-    exit-status: 1
-
-  # 1.6.4 Ensure core dumps are restricted (Automated)
-  grep -E '^(\*|\s).*hard.*core.*(\s+#.*)?$' /etc/security/limits.conf /etc/security/limits.d/* 2>/dev/null:
-    exit-status: 0
-    stdout:
-      - "* hard core 0"
-  sysctl fs.suid_dumpable:
-    exit-status: 0
-    stdout:
-      - "fs.suid_dumpable = 0"
-  grep "fs.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*:
-    exit-status: 0
-    stdout:
-      - "fs.suid_dumpable = 0"
-
-
-  # 1.7 Mandatory Access Control
-  # 1.7.1 Configure AppArmor
-  dpkg -s apparmor | grep Status:
-    exit-status: 0
-    stdout:
-      - "Status: install ok installed"
-
-  # 1.7.1.2 Ensure AppArmor is enabled in the bootloader configuration
+  # 1.6 Mandatory Access Control
+  # 1.6.1.2 Ensure AppArmor is enabled in the bootloader configuration
   grep "^\s*linux" /boot/grub/grub.cfg | grep -v "apparmor=1":
     exit-status: 1
     stdout: []
@@ -179,11 +79,11 @@ command:
     exit-status: 1
     stdout: []
 
-  # 1.7.1.3 Ensure all AppArmor Profiles are in enforce or complain mode
+  # 1.6.1.3 Ensure all AppArmor Profiles are in enforce or complain mode
   test $(expr `apparmor_status --enforced` + `apparmor_status --complaining`) = $(apparmor_status --profiled):
     exit-status: 0
 
-  # 1.7.1.4 Ensure all AppArmor Profiles are enforcing (Automated): level 2
+  # 1.6.1.4 Ensure all AppArmor Profiles are enforcing (Automated): level 2
 
   # 1.9 Ensure updates, patches, and additional security software are installed (Manual)
   /usr/lib/update-notifier/apt-check:
@@ -191,25 +91,30 @@ command:
     stdout:
       - ""
 
-  # 1.10 Ensure GDM is removed or login is configured (Automated)
-  dpkg -s gdm3:
-    exit-status: 1
-
 file:
-  # 1.8 Warning Banners
-  # 1.8.1 Command Line Warning Banners
-  # 1.8.1.1 Ensure message of the day is configured properly (Automated)
-  # 1.8.1.4 Ensure permissions on /etc/motd are configured (Automated)
-  /etc/motd:
+  # 1.4 bootloader security
+  # 1.4.1 & 1.4.3 Ensure permissions on bootloader config are configured (Automated)
+  /boot/grub/grub.cfg:
     exists: true
+    filetype: file
+    owner: root
+    group: root
+    mode: "0400"
+
+  # 1.7 Warning Banners
+  # 1.7.1 Command Line Warning Banners
+  # 1.7.1.1 Ensure message of the day is configured properly (Automated)
+  # 1.7.1.4 Ensure permissions on /etc/motd are configured (Automated)
+  /etc/motd:
+    exists: {{.Vars.checkMotd}}
     mode: "0644"
     owner: root
     group: root
     contains:
       - "Authorized uses only. All activity may be monitored and reported."
 
-  # 1.8.1.2 Ensure local login warning banner is configured properly (Automated)
-  # 1.8.1.5 Ensure permissions on /etc/issue are configured (Automated)
+  # 1.7.1.2 Ensure local login warning banner is configured properly (Automated)
+  # 1.7.1.5 Ensure permissions on /etc/issue are configured (Automated)
   /etc/issue:
     exists: true
     mode: "0644"
@@ -218,8 +123,8 @@ file:
     contains:
       - "Authorized uses only. All activity may be monitored and reported."
 
-  # 1.8.1.3 Ensure remote login warning banner is configured properly (Automated)
-  # 1.8.1.6 Ensure permissions on /etc/issue.net are configured (Automated)
+  # 1.7.1.3 Ensure remote login warning banner is configured properly (Automated)
+  # 1.7.1.6 Ensure permissions on /etc/issue.net are configured (Automated)
   /etc/issue.net:
     exists: true
     mode: "0644"
@@ -227,3 +132,31 @@ file:
     group: root
     contains:
       - "Authorized uses only. All activity may be monitored and reported."
+
+service:
+  {{- range .Vars.services.enabled}}
+  {{.}}:
+    enabled: true
+    running: true
+  {{end}}
+  {{- range .Vars.services.disabled}}
+  {{.}}:
+    enabled: false
+    running: false
+  {{end}}
+
+package:
+  {{- range .Vars.packages.installed}}
+  {{.}}:
+    installed: true
+  {{end}}
+  {{- range .Vars.packages.uninstalled}}
+  {{.}}:
+    installed: false
+  {{end}}
+
+kernel-param:
+  {{- range $k, $v := .Vars.kernelParams}}
+  {{$k}}:
+    value: "{{$v}}"
+  {{end}}
