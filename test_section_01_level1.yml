@@ -27,7 +27,7 @@ mount:
 command:
   # 1.1 Filesystem Configuration
   # 1.1.1 Disable unused filesystems
-  {{- range .Vars.disabledFilesystems}}
+  {{- range .Vars.disabledModules}}
   modprobe -n -v {{.}} 2>&1 | grep -E 'Module {{.}} not found|install\s+/bin/(true|false)':
     exit-status: 0
   lsmod | grep {{.}}:
