@@ -2,7 +2,6 @@
 # CIS Ubuntu Linux 20.04 LTS Benchmark v1.1.0
 #
 # 2 Services
-# 2.3 Ensure nonessential services are removed or masked (not implemented)
 
 package:
   {{.Vars.timeSyncPackage}}:
@@ -43,6 +42,15 @@ package:
     title: "{{$v}} Ensure {{$k}} is not installed"
     meta:
       item: "{{$v}}"
+      level: 1
+  {{end}}
+
+  {{- range list "xinetd" "openbsd-inetd"}}
+  {{$k}}:
+    installed: false
+    title: "2.3 Ensure nonessential services are removed or masked"
+    meta:
+      item: "2.3"
       level: 1
   {{end}}
 
