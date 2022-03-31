@@ -31,14 +31,16 @@ package:
     installed: true
     title: "4.1.1.1 Ensure auditd is installed"
     meta:
-      item: "4.1.1.1"
+      item:
+        - "4.1.1.1"
       level: 2
 
   rsyslog:
     installed: true
     title: "4.2.1.1 Ensure rsyslog is installed"
     meta:
-      item: "4.2.1.1"
+      item:
+        - "4.2.1.1"
       level: 1
 
 service:
@@ -47,7 +49,8 @@ service:
     running: true
     title: "4.1.1.2 Ensure auditd service is enabled"
     meta:
-      item: "4.1.1.2"
+      item:
+        - "4.1.1.2"
       level: 2
 
   rsyslog:
@@ -55,7 +58,8 @@ service:
     running: true
     title: "4.2.1.2 Ensure rsyslog Service is enabled"
     meta:
-      item: "4.2.1.2"
+      item:
+        - "4.2.1.2"
       level: 1
 
 command:
@@ -65,14 +69,16 @@ command:
       - $FileCreateMode 0640
     title: "4.2.1.4 Ensure rsyslog default file permissions configured"
     meta:
-      item: "4.2.1.4"
+      item:
+        - "4.2.1.4"
       level: 1
 
   grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf:
     exit-status: 1
     title: "4.2.1.6 Ensure remote rsyslog messages are only accepted on designated log hosts"
     meta:
-      item: "4.2.1.6"
+      item:
+        - "4.2.1.6"
       level: 1
 
   grep ForwardToSyslog /etc/systemd/journald.conf:
@@ -81,7 +87,8 @@ command:
       - ForwardToSyslog=yes
     title: "4.2.2.1 Ensure journald is configured to send logs to rsyslog"
     meta:
-      item: "4.2.2.1"
+      item:
+        - "4.2.2.1"
       level: 1
 
   grep Compress /etc/systemd/journald.conf:
@@ -90,7 +97,8 @@ command:
       - Compress=yes
     title: "4.2.2.2 Ensure journald is configured to compress large log files"
     meta:
-      item: "4.2.2.2"
+      item:
+        - "4.2.2.2"
       level: 1
 
   grep Storage /etc/systemd/journald.conf:
@@ -99,5 +107,6 @@ command:
       - Storage=persistent
     title: "4.2.2.3 Ensure journald is configured to write logfiles to persistent disk"
     meta:
-      item: "4.2.2.3"
+      item:
+        - "4.2.2.3"
       level: 1

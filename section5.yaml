@@ -17,7 +17,8 @@ service:
     running: true
     title: "5.1.1 Ensure cron daemon is enabled and running"
     meta:
-      item: "5.1.1"
+      item:
+        - "5.1.1"
       level: 1
 
 file:
@@ -28,7 +29,8 @@ file:
     group: root
     title: "5.1.2 Ensure permissions on /etc/crontab are configured"
     meta:
-      item: "5.1.2"
+      item:
+        - "5.1.2"
       level: 1
 
   /etc/cron.hourly/:
@@ -38,7 +40,8 @@ file:
     group: root
     title: "5.1.3 Ensure permissions on /etc/cron.hourly are configured"
     meta:
-      item: "5.1.3"
+      item:
+        - "5.1.3"
       level: 1
 
   /etc/cron.daily/:
@@ -48,7 +51,8 @@ file:
     group: root
     title: "5.1.4 Ensure permissions on /etc/cron.daily are configured"
     meta:
-      item: "5.1.4"
+      item:
+        - "5.1.4"
       level: 1
 
   /etc/cron.weekly/:
@@ -58,7 +62,8 @@ file:
     group: root
     title: "5.1.5 Ensure permissions on /etc/cron.weekly are configured"
     meta:
-      item: "5.1.5"
+      item:
+        - "5.1.5"
       level: 1
 
   /etc/cron.monthly/:
@@ -68,7 +73,8 @@ file:
     group: root
     title: "5.1.6 Ensure permissions on /etc/cron.monthly are configured"
     meta:
-      item: "5.1.6"
+      item:
+        - "5.1.6"
       level: 1
 
   /etc/cron.d/:
@@ -78,14 +84,16 @@ file:
     group: root
     title: "5.1.7 Ensure permissions on /etc/cron.d are configured"
     meta:
-      item: "5.1.7"
+      item:
+        - "5.1.7"
       level: 1
 
   /etc/cron.deny:
     exists: false
     title: "5.1.8 Ensure cron is restricted to authorized users"
     meta:
-      item: "5.1.8"
+      item:
+        - "5.1.8"
       level: 1
   /etc/cron.allow:
     exists: true
@@ -96,14 +104,16 @@ file:
       - "root"
     title: "5.1.8 Ensure cron is restricted to authorized users"
     meta:
-      item: "5.1.8"
+      item:
+        - "5.1.8"
       level: 1
 
   /etc/at.deny:
     exists: false
     title: "5.1.9 Ensure at is restricted to authorized users"
     meta:
-      item: "5.1.9"
+      item:
+        - "5.1.9"
       level: 1
   /etc/at.allow:
     exists: true
@@ -114,7 +124,8 @@ file:
       - "root"
     title: "5.1.9 Ensure at is restricted to authorized users"
     meta:
-      item: "5.1.9"
+      item:
+        - "5.1.9"
       level: 1
 
   /etc/ssh/sshd_config:
@@ -146,7 +157,26 @@ file:
       - "MaxSessions 10"
     title: "5.3.1 and 5.3.5 thru 5.3.22 Configure SSH Server"
     meta:
-      item: "5.3"
+      item:
+        - "5.3.1"
+        - "5.3.5"
+        - "5.3.6"
+        - "5.3.7"
+        - "5.3.8"
+        - "5.3.9"
+        - "5.3.10"
+        - "5.3.11"
+        - "5.3.12"
+        - "5.3.13"
+        - "5.3.14"
+        - "5.3.15"
+        - "5.3.16"
+        - "5.3.17"
+        - "5.3.18"
+        - "5.3.19"
+        - "5.3.20"
+        - "5.3.21"
+        - "5.3.22"
       level: 1
 
   /etc/security/pwquality.conf:
@@ -159,7 +189,8 @@ file:
       - "minclass = 4"
     title: "5.4.1 Ensure password creation requirements are configured"
     meta:
-      item: "5.4.1"
+      item:
+        - "5.4.1"
       level: 1
 
   /etc/pam.d/common-password:
@@ -173,7 +204,9 @@ file:
       - "pam_unix.so sha512"           # 5.4.4
     title: "5.4.3 and 5.4.4 Limit password reuse and ensure sha512 hashing"
     meta:
-      item: "5.4.3"
+      item:
+        - "5.4.3"
+        - "5.4.4"
       level: 1
 
   /etc/login.defs:
@@ -187,7 +220,9 @@ file:
       - "PASS_WARN_AGE   7"
     title: "5.5.1.1 thru 5.5.1.3 enforce password requirements"
     meta:
-      item: "5.5.1.1"
+      item:
+        - "5.5.1.1"
+        - "5.5.1.3"
       level: 1
 
 package:
@@ -195,7 +230,8 @@ package:
     installed: true
     title: "5.2.1 Ensure sudo is installed"
     meta:
-      item: "5.2.1"
+      item:
+        - "5.2.1"
       level: 1
 
 command:
@@ -205,7 +241,8 @@ command:
       - use_pty
     title: "5.2.2 Ensure sudo commands use pty"
     meta:
-      item: "5.2.2"
+      item:
+        - "5.2.2"
       level: 1
 
   grep -Ei '^\s*Defaults\s+logfile=\S+' /etc/sudoers /etc/sudoers.d/*:
@@ -214,7 +251,8 @@ command:
       - logfile="/var/log/sudo.log"
     title: "5.2.3 Ensure sudo log file exists"
     meta:
-      item: "5.2.3"
+      item:
+        - "5.2.3"
       level: 1
 
   bash /tmp/test_section_05_level1/5-2-2.sh:
@@ -225,7 +263,8 @@ command:
     timeout: 10000
     title: "5.3.2 Ensure permissions on SSH private host key files are configured"
     meta:
-      item: "5.3.2"
+      item:
+        - "5.3.2"
       level: 1
 
   bash /tmp/test_section_05_level1/5-2-3.sh:
@@ -236,7 +275,8 @@ command:
     timeout: 10000
     title: "5.3.3 Ensure permissions on SSH public host key files are configured"
     meta:
-      item: "5.3.3"
+      item:
+        - "5.3.3"
       level: 1
 
   useradd -D | grep INACTIVE:
@@ -245,7 +285,8 @@ command:
       - INACTIVE=30
     title: "5.5.1.4 Ensure inactive password lock is 30 days or less"
     meta:
-      item: "5.5.1.4"
+      item:
+        - "5.5.1.4"
       level: 1
 
 user:
@@ -255,5 +296,6 @@ user:
     gid: 0
     title: "Ensure default group for the root account is GID 0"
     meta:
-      item: "5.5.3"
+      item:
+        - "5.5.3"
       level: 1
