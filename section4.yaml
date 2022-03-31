@@ -1,0 +1,103 @@
+---
+# CIS Ubuntu Linux 20.04 LTS Benchmark v1.1.0
+#
+# 4 Logging and Auditing
+# 4.1.1.3 Ensure auditing for processes that start prior to auditd is enabled - level 2 (not implemented)
+# 4.1.1.4 Ensure audit_backlog_limit is sufficient - level 2 (not implemented)
+# 4.1.2 Configure Data Retention - level 2 (not implemented)
+# 4.1.3 Ensure events that modify date and time information are collected - level 2 (not implemented)
+# 4.1.4 Ensure events that modify user/group information are collected - level 2 (not implemented)
+# 4.1.5 Ensure events that modify the system's network environment are collected - level 2 (not implemented)
+# 4.1.6 Ensure events that modify the system's Mandatory Access Controls are collected - level 2 (not implemented)
+# 4.1.7 Ensure login and logout events are collected - level 2 (not implemented)
+# 4.1.8 Ensure session initiation information is collected - level 2 (not implemented)
+# 4.1.9 Ensure discretionary access control permission modification events are collected - level 2 (not implemented)
+# 4.1.10 Ensure unsuccessful unauthorized file access attempts are collected - level 2 (not implemented)
+# 4.1.11 Ensure use of privileged commands is collected - level 2 (not implemented)
+# 4.1.12 Ensure successful file system mounts are collected - level 2 (not implemented)
+# 4.1.13 Ensure file deletion events by users are collected - level 2 (not implemented)
+# 4.1.14 Ensure changes to system administration scope (sudoers) is collected - level 2 (not implemented)
+# 4.1.15 Ensure system administrator command executions (sudo) are collected - level 2 (not implemented)
+# 4.1.16 Ensure kernel module loading and unloading is collected - level 2 (not implemented)
+# 4.1.17 Ensure the audit configuration is immutable - level 2 (not implemented)
+# 4.2.1.3 Ensure logging is configured (Manual)
+# 4.2.1.5 Ensure rsyslog is configured to send logs to a remote log host (not implemented)
+# 4.2.3 Ensure permissions on all logfiles are configured (not implemented)
+# 4.3 Ensure logrotate is configured (Manual)
+# 4.4 Ensure logrotate assigns appropriate permissions (not implemented)
+
+package:
+  auditd:
+    installed: true
+    title: "4.1.1.1 Ensure auditd is installed"
+    meta:
+      item: "4.1.1.1"
+      level: 2
+
+  rsyslog:
+    installed: true
+    title: "4.2.1.1 Ensure rsyslog is installed"
+    meta:
+      item: "4.2.1.1"
+      level: 1
+
+service:
+  auditd:
+    enabled: true
+    running: true
+    title: "4.1.1.2 Ensure auditd service is enabled"
+    meta:
+      item: "4.1.1.2"
+      level: 2
+
+  rsyslog:
+    enabled: true
+    running: true
+    title: "4.2.1.2 Ensure rsyslog Service is enabled"
+    meta:
+      item: "4.2.1.2"
+      level: 1
+
+command:
+  grep ^\s*\$FileCreateMode /etc/rsyslog.conf /etc/rsyslog.d/*.conf:
+    exit-status: 0
+    stdout:
+      - $FileCreateMode 0640
+    title: "4.2.1.4 Ensure rsyslog default file permissions configured"
+    meta:
+      item: "4.2.1.4"
+      level: 1
+
+  grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf:
+    exit-status: 1
+    title: "4.2.1.6 Ensure remote rsyslog messages are only accepted on designated log hosts"
+    meta:
+      item: "4.2.1.6"
+      level: 1
+
+  grep ForwardToSyslog /etc/systemd/journald.conf:
+    exit-status: 0
+    stdout:
+      - ForwardToSyslog=yes
+    title: "4.2.2.1 Ensure journald is configured to send logs to rsyslog"
+    meta:
+      item: "4.2.2.1"
+      level: 1
+
+  grep Compress /etc/systemd/journald.conf:
+    exit-status: 0
+    stdout:
+      - Compress=yes
+    title: "4.2.2.2 Ensure journald is configured to compress large log files"
+    meta:
+      item: "4.2.2.2"
+      level: 1
+
+  grep Storage /etc/systemd/journald.conf:
+    exit-status: 0
+    stdout:
+      - Storage=persistent
+    title: "4.2.2.3 Ensure journald is configured to write logfiles to persistent disk"
+    meta:
+      item: "4.2.2.3"
+      level: 1
