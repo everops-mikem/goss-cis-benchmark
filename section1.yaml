@@ -7,10 +7,10 @@
 # 1.1.15 /var/logs is a separate partition - level 2 (not implemented)
 # 1.1.16 /var/audit is a separate partition - level 2 (not implemented)
 # 1.1.17 & 1.1.18 /home is a separate partition with nodev option - level 2 (not implemented)
-# 1.1.19 thru 1.1.21 set appropriate options on removable media partitions - level 1 (not implemented)
+# 1.1.19 thru 1.1.21 set appropriate options on removable media partitions (not implemented)
 # 1.2 Configure Software Updates - manual site-local configuration verification (not implemented)
 # 1.4.2 Ensure bootloader password is set (not implemented)
-# 1.4.4 Ensure authentication required for single user mode
+# 1.4.4 Ensure authentication required for single user mode (not implemented)
 # 1.6.1.4 Ensure all AppArmor Profiles are enforcing - level 2 (not implemented)
 
 command:

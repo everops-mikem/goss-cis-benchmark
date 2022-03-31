@@ -103,3 +103,4 @@ services:
     - autofs    # 1.1.23
     - nftables  # 3.5.2.9 - disabled because ufw is enabled
 checkMotd: false  # /etc/motd does not exist on Zendesk image
+timeSyncPackage: systemd-timesyncd
