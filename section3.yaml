@@ -126,7 +126,7 @@ kernel-param:
   {{end}}
 
 command:
-  bash /tmp/test_section_03_level1/3-1-2.sh:
+  bash scripts/test_section_03_level1/3-1-2.sh:
     exit-status: 0
     stderr: [ ]
     stdout:

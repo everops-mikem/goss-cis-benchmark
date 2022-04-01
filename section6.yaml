@@ -151,7 +151,7 @@ command:
         - "6.2.2"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-3.sh:
+  bash scripts/test_section_06_level1/6-2-3.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -161,7 +161,7 @@ command:
         - "6.2.3"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-4.sh:
+  bash scripts/test_section_06_level1/6-2-4.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -171,7 +171,7 @@ command:
         - "6.2.4"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-5.sh:
+  bash scripts/test_section_06_level1/6-2-5.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -181,7 +181,7 @@ command:
         - "6.2.5"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-6.sh:
+  bash scripts/test_section_06_level1/6-2-6.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -191,7 +191,7 @@ command:
         - "6.2.6"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-7.sh:
+  bash scripts/test_section_06_level1/6-2-7.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -201,7 +201,7 @@ command:
         - "6.2.7"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-8.sh:
+  bash scripts/test_section_06_level1/6-2-8.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -211,7 +211,7 @@ command:
         - "6.2.8"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-9.sh:
+  bash scripts/test_section_06_level1/6-2-9.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -221,7 +221,7 @@ command:
         - "6.2.9"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-10.sh:
+  bash scripts/test_section_06_level1/6-2-10.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -231,7 +231,7 @@ command:
         - "6.2.10"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-11.sh:
+  bash scripts/test_section_06_level1/6-2-11.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -241,7 +241,7 @@ command:
         - "6.2.11"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-12.sh:
+  bash scripts/test_section_06_level1/6-2-12.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -251,7 +251,7 @@ command:
         - "6.2.12"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-13.sh:
+  bash scripts/test_section_06_level1/6-2-13.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -261,7 +261,7 @@ command:
         - "6.2.13"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-14.sh:
+  bash scripts/test_section_06_level1/6-2-14.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -271,7 +271,7 @@ command:
         - "6.2.14"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-15.sh:
+  bash scripts/test_section_06_level1/6-2-15.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
@@ -281,7 +281,7 @@ command:
         - "6.2.15"
       level: 1
 
-  bash /tmp/test_section_06_level1/6-2-16.sh:
+  bash scripts/test_section_06_level1/6-2-16.sh:
     exit-status: 0
     stderr: []
     timeout: 10000
