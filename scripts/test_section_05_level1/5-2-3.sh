@@ -29,7 +29,7 @@ if [ "${status}" -eq 0 ]; then
   for file in ${files}; do
       stat_file=$(stat -c "%a-%u-%g-%U-%G" "${file}") || status="1"
         if [ -n "${stat_file}" ]; then
-          if [ "${stat_file}" = "600-0-0-root-root" ]; then
+          if [ "${stat_file}" = "644-0-0-root-root" ]; then
               /bin/true
           else
             echo "${file} ownership or permissions is wrong"
