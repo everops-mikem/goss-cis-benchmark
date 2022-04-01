@@ -279,7 +279,7 @@ command:
 
   sshd -T:
     exit-status: 0
-    sdtout:
+    stdout:
       - /Protocol\s+2/i
       - /LogLevel\s+INFO/i
       - /X11Forwarding\s+no/i
