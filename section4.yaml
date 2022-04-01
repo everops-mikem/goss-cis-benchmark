@@ -81,36 +81,6 @@ command:
         - "4.2.1.6"
       level: 1
 
-#  grep ForwardToSyslog /etc/systemd/journald.conf:
-#    exit-status: 0
-#    stdout:
-#      - ForwardToSyslog=yes
-#    title: "4.2.2.1 Ensure journald is configured to send logs to rsyslog"
-#    meta:
-#      item:
-#        - "4.2.2.1"
-#      level: 1
-#
-#  grep Compress /etc/systemd/journald.conf:
-#    exit-status: 0
-#    stdout:
-#      - Compress=yes
-#    title: "4.2.2.2 Ensure journald is configured to compress large log files"
-#    meta:
-#      item:
-#        - "4.2.2.2"
-#      level: 1
-#
-#  grep Storage /etc/systemd/journald.conf:
-#    exit-status: 0
-#    stdout:
-#      - /Storage=(persistent|auto)/
-#    title: "4.2.2.3 Ensure journald is configured to write logfiles to persistent disk"
-#    meta:
-#      item:
-#        - "4.2.2.3"
-#      level: 1
-
 file:
   /var/log/journal:
     exists: true
