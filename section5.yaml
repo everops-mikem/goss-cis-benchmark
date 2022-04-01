@@ -126,56 +126,56 @@ file:
         - "5.1.9"
       level: 1
 
-  /etc/ssh/sshd_config:
-    exists: true
-    mode: "0600"
-    owner: root
-    group: root
-    contains:
-      - "Protocol 2"
-      - "LogLevel INFO"
-      - "X11Forwarding no"
-      - "MaxAuthTries 2"
-      - "IgnoreRhosts yes"
-      - "HostbasedAuthentication no"
-      - "PermitRootLogin no"
-      - "PermitEmptyPasswords no"
-      - "PermitUserEnvironment no"
-      - "Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
-      - "MACs MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256"
-      - "KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellmangroup14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffiehellman-group-exchange-sha256"
-      - "ClientAliveInterval 300"
-      - "ClientAliveCountMax 0"
-      - "LoginGraceTime 60"
-      - "Banner /etc/issue.net"
-      - "DenyUsers root"
-      - "UsePAM yes"
-      - "AllowTcpForwarding no"
-      - "MaxStartups 10:30:100"
-      - "MaxSessions 10"
-    title: "5.3.1 and 5.3.5 thru 5.3.22 Configure SSH Server"
-    meta:
-      item:
-        - "5.3.1"
-        - "5.3.5"
-        - "5.3.6"
-        - "5.3.7"
-        - "5.3.8"
-        - "5.3.9"
-        - "5.3.10"
-        - "5.3.11"
-        - "5.3.12"
-        - "5.3.13"
-        - "5.3.14"
-        - "5.3.15"
-        - "5.3.16"
-        - "5.3.17"
-        - "5.3.18"
-        - "5.3.19"
-        - "5.3.20"
-        - "5.3.21"
-        - "5.3.22"
-      level: 1
+#  /etc/ssh/sshd_config:
+#    exists: true
+#    mode: "0600"
+#    owner: root
+#    group: root
+#    contains:
+#      - "Protocol 2"
+#      - "LogLevel INFO"
+#      - "X11Forwarding no"
+#      - "MaxAuthTries 2"
+#      - "IgnoreRhosts yes"
+#      - "HostbasedAuthentication no"
+#      - "PermitRootLogin no"
+#      - "PermitEmptyPasswords no"
+#      - "PermitUserEnvironment no"
+#      - "Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
+#      - "MACs MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256"
+#      - "KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellmangroup14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffiehellman-group-exchange-sha256"
+#      - "ClientAliveInterval 300"
+#      - "ClientAliveCountMax 0"
+#      - "LoginGraceTime 60"
+#      - "Banner /etc/issue.net"
+#      - "DenyUsers root"
+#      - "UsePAM yes"
+#      - "AllowTcpForwarding no"
+#      - "MaxStartups 10:30:100"
+#      - "MaxSessions 10"
+#    title: "5.3.1 and 5.3.5 thru 5.3.22 Configure SSH Server"
+#    meta:
+#      item:
+#        - "5.3.1"
+#        - "5.3.5"
+#        - "5.3.6"
+#        - "5.3.7"
+#        - "5.3.8"
+#        - "5.3.9"
+#        - "5.3.10"
+#        - "5.3.11"
+#        - "5.3.12"
+#        - "5.3.13"
+#        - "5.3.14"
+#        - "5.3.15"
+#        - "5.3.16"
+#        - "5.3.17"
+#        - "5.3.18"
+#        - "5.3.19"
+#        - "5.3.20"
+#        - "5.3.21"
+#        - "5.3.22"
+#      level: 1
 
   /etc/security/pwquality.conf:
     exists: true
@@ -275,6 +275,54 @@ command:
     meta:
       item:
         - "5.3.3"
+      level: 1
+
+  sshd -T:
+    exit-status: 0
+    sdtout:
+      - /Protocol\s+2/i
+      - /LogLevel\s+INFO/i
+      - /X11Forwarding\s+no/i
+      - /MaxAuthTries\s+2/i
+      - /IgnoreRhosts\s+yes/i
+      - /HostbasedAuthentication\s+no/i
+      - /PermitRootLogin\s+no/i
+      - /PermitEmptyPasswords\s+no/i
+      - /PermitUserEnvironment\s+no/i
+      - /Ciphers\s+chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr/i
+      - /MACs\s+hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256/i
+      - /KexAlgorithms\s+curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellmangroup14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffiehellman-group-exchange-sha256/i
+      - /ClientAliveInterval\s+300/i
+      - /ClientAliveCountMax\s+0/i
+      - /LoginGraceTime\s+60/i
+      - /Banner\s+\/etc\/issue.net/i
+      - /DenyUsers\s+root/i
+      - /UsePAM\s+yes/i
+      - /AllowTcpForwarding\s+no/i
+      - /MaxStartups\s+10:30:100/i
+      - /MaxSessions\s+10/i
+    title: "5.3.1 and 5.3.5 thru 5.3.22 Configure SSH Server"
+    meta:
+      item:
+        - "5.3.1"
+        - "5.3.5"
+        - "5.3.6"
+        - "5.3.7"
+        - "5.3.8"
+        - "5.3.9"
+        - "5.3.10"
+        - "5.3.11"
+        - "5.3.12"
+        - "5.3.13"
+        - "5.3.14"
+        - "5.3.15"
+        - "5.3.16"
+        - "5.3.17"
+        - "5.3.18"
+        - "5.3.19"
+        - "5.3.20"
+        - "5.3.21"
+        - "5.3.22"
       level: 1
 
   useradd -D | grep INACTIVE:
