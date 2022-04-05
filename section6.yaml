@@ -68,7 +68,7 @@ file:
     exists: true
     mode: "0640"
     owner: root
-    group: shadow
+    group: /root|shadow/
     title: "6.1.7 Ensure permissions on /etc/shadow- are configured"
     meta:
       item:
@@ -90,8 +90,8 @@ file:
     exists: true
     mode: "0640"
     owner: root
-    group: shadow
-    title: "6.1.9"
+    group: /root|shadow/
+    title: "6.1.9 Ensure permissions on /etc/gshadow- are configured"
     meta:
       item:
         - "6.1.9"
