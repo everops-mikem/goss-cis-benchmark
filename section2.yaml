@@ -6,13 +6,15 @@
 # 2 Services
 
 package:
-  {{.Vars.timeSyncPackage}}:
-    installed: true
-    title: "2.1.1.1 Ensure time synchronization is in use"
-    meta:
-      item:
-        - "2.1.1.1"
-      level: 1
+# For ubuntu 16 & 18 systemd-timesyncd is part of the systemd package, and not it's own package.
+# Assume that if service exists, the requisite package must exist.
+#  {{.Vars.timeSyncPackage}}:
+#    installed: true
+#    title: "2.1.1.1 Ensure time synchronization is in use"
+#    meta:
+#      item:
+#        - "2.1.1.1"
+#      level: 1
 
   xserver-xorg*:
     installed: false
@@ -66,36 +68,41 @@ service:
   systemd-timesyncd:
     enabled: {{eq .Vars.timeSyncPackage "systemd-timesyncd"}}
     running: {{eq .Vars.timeSyncPackage "systemd-timesyncd"}}
-    title: "2.1.1.2 Ensure systemd-timesyncd is configured"
+    title: "2.1.1.1 & 2.1.1.2 Ensure systemd-timesyncd is configured"
     meta:
       item:
+        - "2.1.1.1"
         - "2.1.1.2"
       level: 1
 
   chronyd:
     enabled: {{eq .Vars.timeSyncPackage "chrony"}}
     running: {{eq .Vars.timeSyncPackage "chrony"}}
-    title: "2.1.1.3 Ensure chrony is configured"
+    title: "2.1.1.1 & 2.1.1.3 Ensure chrony is configured"
     meta:
       item:
+        - "2.1.1.1"
         - "2.1.1.3"
       level: 1
 
   ntpd:
     enabled: {{eq .Vars.timeSyncPackage "ntp"}}
     running: {{eq .Vars.timeSyncPackage "ntp"}}
-    title: "2.1.1.4 Ensure ntp is configured"
+    title: "2.1.1.1 & 2.1.1.4 Ensure ntp is configured"
     meta:
       item:
+        - "2.1.1.1"
         - "2.1.1.4"
       level: 1
 
 command:
-  timedatectl show --property NTP --property NTPSynchronized:
+  # Ubuntu 16 and 18 do not support the 'show' subcommand for timedatectl
+  # Rely on output parsing for 'timedatectl status' which is available for all versions
+  timedatectl status:
     exit-status: 0
     stdout:
-      - NTP=yes
-      - NTPSynchronized=yes
+      - '/(?:NTP|System clock) synchronized: yes/'
+      - '/(?:Network time on|systemd-timesyncd.service active|NTP service): (?:yes|active)/'
     skip: {{ne .Vars.timeSyncPackage "systemd-timesyncd"}}
     title: "2.1.1.2 Ensure systemd-timesyncd is configured"
     meta:
