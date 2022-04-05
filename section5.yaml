@@ -12,7 +12,7 @@
 # 5.7 Ensure access to the su command is restricted (Automated): not implemented
 
 service:
-  cron:
+  {{.Vars.cronService}}:
     enabled: true
     running: true
     title: "5.1.1 Ensure cron daemon is enabled and running"

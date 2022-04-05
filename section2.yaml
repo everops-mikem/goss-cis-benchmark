@@ -6,16 +6,6 @@
 # 2 Services
 
 package:
-# For ubuntu 16 & 18 systemd-timesyncd is part of the systemd package, and not it's own package.
-# Assume that if service exists, the requisite package must exist.
-#  {{.Vars.timeSyncPackage}}:
-#    installed: true
-#    title: "2.1.1.1 Ensure time synchronization is in use"
-#    meta:
-#      item:
-#        - "2.1.1.1"
-#      level: 1
-
   xserver-xorg*:
     installed: false
     title: "2.1.2 Ensure X Window System is not installed"

@@ -29,7 +29,7 @@
 # 4.4 Ensure logrotate assigns appropriate permissions (not implemented)
 
 package:
-  auditd:
+  {{.Vars.auditPackage}}:
     installed: true
     title: "4.1.1.1 Ensure auditd is installed"
     meta:
