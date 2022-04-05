@@ -22,7 +22,10 @@ file:
 
   /etc/passwd-:
     exists: true
-    mode: "0644"
+    mode:
+      or:
+        - "0640"
+        - "0600"
     owner: root
     group: root
     title: "6.1.3 Ensure permissions on /etc/passwd- are configured"
@@ -44,7 +47,10 @@ file:
 
   /etc/group-:
     exists: true
-    mode: "0644"
+    mode:
+      or:
+        - "0640"
+        - "0600"
     owner: root
     group: root
     title: "6.1.5 Ensure permissions on /etc/group- are configured"
@@ -66,7 +72,10 @@ file:
 
   /etc/shadow-:
     exists: true
-    mode: "0640"
+    mode:
+      or:
+        - "0640"
+        - "0600"
     owner: root
     group:
       match-regexp: root|shadow
@@ -89,7 +98,10 @@ file:
 
   /etc/gshadow-:
     exists: true
-    mode: "0640"
+    mode:
+      or:
+        - "0640"
+        - "0600"
     owner: root
     group:
       match-regexp: root|shadow
