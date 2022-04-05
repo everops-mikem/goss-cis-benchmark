@@ -24,7 +24,7 @@ file:
     exists: true
     mode:
       or:
-        - "0640"
+        - "0644"
         - "0600"
     owner: root
     group: root
@@ -49,7 +49,7 @@ file:
     exists: true
     mode:
       or:
-        - "0640"
+        - "0644"
         - "0600"
     owner: root
     group: root
