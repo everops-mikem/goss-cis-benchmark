@@ -263,7 +263,8 @@ kernel-param:
       level: 1
 
   fs.suid_dumpable:
-    value: /2|0/
+    value:
+      match-regexp: 2|0
     title: '1.5.4 Ensure core dumps are restricted'
     meta:
       item:
@@ -271,7 +272,8 @@ kernel-param:
       level: 1
 
   kernel.core_pattern:
-    value: /core|\|\/usr\/share\/apport\/apport %p %s %c %d %P %E/
+    value:
+      match-regexp: core|\\|\\/usr\\/share\\/apport\\/apport %p %s %c %d %P %E
     title: '1.5.4 Ensure core dumps are restricted'
     meta:
       item:
