@@ -6,3 +6,4 @@ firewallPackage: ufw
 auditPackage: auditd
 cronService: cron
 grubConfigFile: /boot/grub/grub.cfg
+swUpdateCheckCmd: /usr/lib/update-notifier/apt-check

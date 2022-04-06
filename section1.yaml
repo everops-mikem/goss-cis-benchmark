@@ -94,7 +94,7 @@ command:
         - '1.6.1.3'
       level: 1
 
-  /usr/lib/update-notifier/apt-check:
+  {{.Vars.swUpdateCheckCmd}}:
     exit-status: 0
     stdout:
       - ""

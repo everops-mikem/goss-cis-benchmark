@@ -100,7 +100,8 @@ command:
         - "2.1.1.2"
       level: 1
 
-  grep -E "^(server|pool)" /etc/chrony/chrony.conf /etc/chrony.conf:
+  # config file is specific for AL2, since we're using systemd-timesync on ubuntu
+  grep -E "^(server|pool)" /etc/chrony.conf:
     exit-status: 0
     stdout:
       - '/^(?:server|pool)\s+\w+/'

@@ -2,7 +2,8 @@
 fsIntegrityTool: osquery
 checkMotd: true  # /etc/motd does not exist on Zendesk image
 timeSyncPackage: chrony
-firewallPackage: firewalld
+firewallPackage: iptables
 auditPackage: audit
 cronService: crond
 grubConfigFile: /boot/grub2/grub.cfg
+swUpdateCheckCmd: /usr/bin/yum check-update
