@@ -5,3 +5,4 @@ timeSyncPackage: chrony
 firewallPackage: firewalld
 auditPackage: audit
 cronService: crond
+grubConfigFile: /boot/grub2/grub.cfg

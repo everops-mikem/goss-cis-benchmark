@@ -5,3 +5,4 @@ timeSyncPackage: systemd-timesyncd
 firewallPackage: ufw
 auditPackage: auditd
 cronService: cron
+grubConfigFile: /boot/grub/grub.cfg

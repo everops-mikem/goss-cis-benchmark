@@ -198,7 +198,7 @@ package:
       level: 2
 
 file:
-  /boot/grub/grub.cfg:
+  {{.Vars.grubConfigFile}}:
     exists: true
     filetype: file
     owner: root
