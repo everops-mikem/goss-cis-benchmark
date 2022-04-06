@@ -52,7 +52,7 @@ kernel-param:
   {{end}}
 
   {{- range list "net.ipv4.conf.all.accept_redirects" "net.ipv4.conf.default.accept_redirects" "net.ipv6.conf.all.accept_redirects" "net.ipv6.conf.default.accept_redirects"}}
-  {{. }}:
+  {{.}}:
     value: "0"
     title: "3.3.2 Ensure ICMP redirects are not accepted"
     meta:
@@ -215,8 +215,9 @@ package:
   {{end}}
 
   # Use Amazon Linux 2 packages, since we're using ufw with ubuntu
-  {{- if eq .Vars.firewallPackage "ipables"}}
-  {{- range list "iptables" "iptables-services"}}:
+  {{- if eq .Vars.firewallPackage "iptables"}}
+  {{- range list .Vars.firewallPackage "iptables-services"}}
+  {{.}}:
     installed: true
     title: "3.5.3.1.1 Ensure iptables packages are installed"
     meta:
@@ -235,7 +236,7 @@ package:
   {{- range list "ufw" "firewalld"}}
   {{.}}:
     installed: false
-    title: "3.5.3.1.3 Ensure {{.}} is not installed with {{.Vars.firewallPackage}}"
+    title: "3.5.3.1.3 Ensure {{.}} is not installed with iptables"
     meta:
       item:
         - "3.5.3.1.3"
