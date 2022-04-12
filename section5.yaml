@@ -316,7 +316,7 @@ user:
     exists: true
     uid: 0
     gid: 0
-    title: "Ensure default group for the root account is GID 0"
+    title: "5.5.3 Ensure default group for the root account is GID 0"
     meta:
       item:
         - "5.5.3"
