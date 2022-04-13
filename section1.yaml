@@ -198,6 +198,9 @@ package:
       level: 2
 
 file:
+  # This may fail the 'mode' check since grub-mkconfig does 'chmod 444' when it creates a new file
+  # 1.4.1 says we should make sure the script does a 400 chmod, but I think we should be very
+  # hesitant to modify a system-supplied script
   {{.Vars.grubConfigFile}}:
     exists: true
     filetype: file
