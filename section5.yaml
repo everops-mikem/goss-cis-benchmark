@@ -167,7 +167,7 @@ file:
       - "PASS_MAX_DAYS   365"
       - "PASS_MIN_DAYS   1"
       - "PASS_WARN_AGE   7"
-    title: "5.5.1.1 thru 5.5.1.3 enforce password requirements"
+    title: "5.5.1.1 thru 5.5.1.3 Enforce password requirements"
     meta:
       item:
         - "5.5.1.1"
