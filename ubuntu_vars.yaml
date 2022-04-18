@@ -1,6 +1,5 @@
 ---
 fsIntegrityTool: osquery
-checkMotd: false  # /etc/motd does not exist on Zendesk image
 timeSyncPackage: systemd-timesyncd
 firewallPackage: ufw
 auditPackage: auditd
