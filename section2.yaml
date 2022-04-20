@@ -16,12 +16,12 @@ package:
 
   {{- range $k, $v := .Vars.packages}}
   {{$k}}:
-  installed: false
-  title: "{{$v}} Ensure {{$k}} is not installed"
-  meta:
-    item:
-      - "{{$v}}"
-    level: 1
+    installed: false
+    title: "{{$v}} Ensure {{$k}} is not installed"
+    meta:
+      item:
+        - "{{$v}}"
+      level: 1
   {{end}}
 
   {{- range list "xinetd" "openbsd-inetd"}}
