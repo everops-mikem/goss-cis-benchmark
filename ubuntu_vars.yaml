@@ -1,9 +1,11 @@
 ---
+os: ubuntu
 fsIntegrityTool: osquery
 timeSyncPackage: systemd-timesyncd
 firewallPackage: ufw
 auditPackage: auditd
 x11Package: xserver-xorg*
+macPackage: apparmor
 cronService: cron
 grubConfigFile: /boot/grub/grub.cfg
 swUpdateCheckCmd: /usr/lib/update-notifier/apt-check

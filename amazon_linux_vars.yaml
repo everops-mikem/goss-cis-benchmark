@@ -1,14 +1,16 @@
 ---
+os: amazon
 fsIntegrityTool: osquery
 timeSyncPackage: chrony
 firewallPackage: iptables
 auditPackage: audit
 x11Package: xorg-x11-server*
+macPackage: libselinux
 cronService: crond
 grubConfigFile: /boot/grub2/grub.cfg
 swUpdateCheckCmd: /usr/bin/yum check-update
 
-# map of package name keys with CIS item number value
+# map of package name keys with CIS item number value which are not to be installed
 packages:
   avahi-daemon: 2.3.1
   avahi-autoipd: 2.3.1
