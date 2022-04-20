@@ -17,10 +17,10 @@
 
 {{- if eq .Vars.os "ubuntu"}}
 gossfile:
-  section1_ubuntu.yaml
+  section1_ubuntu.yaml: {}
 {{- else if eq .Vars.os "amazon"}}
 gossfile:
-  section1_amazon.yaml
+  section1_amazon.yaml: {}
 {{end}}
 
 command:
