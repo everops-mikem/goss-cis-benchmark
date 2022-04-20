@@ -3,6 +3,32 @@ fsIntegrityTool: osquery
 timeSyncPackage: chrony
 firewallPackage: iptables
 auditPackage: audit
+x11Package: xorg-x11-server*
 cronService: crond
 grubConfigFile: /boot/grub2/grub.cfg
 swUpdateCheckCmd: /usr/bin/yum check-update
+
+# map of package name keys with CIS item number value
+packages:
+  avahi-daemon: 2.3.1
+  avahi-autoipd: 2.3.1
+  cups: 2.1.4
+  dhcp: 2.1.5
+  openldap-servers: 2.1.6
+  bind: 2.1.7
+  vsftpd: 2.1.8
+  httpd: 2.1.9
+  dovecot: 2.1.10
+  samba: 2.1.11
+  squid: 2.1.12
+  net-snmp: 2.1.13
+  ypserv: 2.1.14
+  telnet-server: 2.1.15
+  nfs-utils: 2.1.17
+  rpcbind: 2.1.18
+  rsync: 2.1.19
+  ypbind: 2.2.1
+  rsh: 2.2.2
+  talk: 2.2.3
+  telnet: 2.2.4
+  openldap-clients: 2.2.5
