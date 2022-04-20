@@ -77,20 +77,6 @@ command:
         - '1.5.1'
       level: 1
 
-#  # prints rendered motd for update-motd facility in ubuntu (FIXME - does not work with AL2)
-#  run-parts --lsbsysinit /etc/update-motd.d:
-#    exit-status: 0
-#    stdout:
-#      - "WARNING: THIS IS A PRIVATE COMPUTER SYSTEM FOR USE BY ZENDESK"
-#      - "Unauthorized access to this system is forbidden"
-#      - "your actions may be monitored"
-#    title: '1.7.1.1 & 1.7.1.4 Ensure message of the day is configured properly'
-#    meta:
-#      item:
-#        - '1.7.1.1'
-#        - '1.7.1.4'
-#      level: 1
-
   {{.Vars.swUpdateCheckCmd}}:
     exit-status: 0
     stdout:
