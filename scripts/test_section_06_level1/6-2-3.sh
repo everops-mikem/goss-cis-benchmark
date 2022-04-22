@@ -66,7 +66,7 @@ while [ "${1-}" != "" ]; do
         fi
     else
         echo "${p} is not a directory"
-        stderr="1"
+#        stderr="1"
     fi
     shift
 done
