@@ -12,10 +12,7 @@
 set -o errexit
 set -o nounset
 
-for usr in $(cut -d: -f1 /etc/shadow); do
-  [[ \
-    $(chage --list $usr | grep '^Last password change' | cut -d: -f2) > $(date)
-  ]] \
-    && \
-    echo "$usr :$(chage --list $usr | grep '^Last password change' | cut -d: -f2)";
+awk -F : '/^[^:]+:[^!*]/{print $1}' /etc/shadow | while read -r usr; do
+  [ "$(date --date="$(chage --list "$usr" | grep '^Last password change' | cut - d: -f2)" +%s)" -gt "$(date "+%s")" ] && \
+  echo "user: $usr password change date: $(chage --list "$usr" | grep '^Last password change' | cut -d: -f2)"
 done
