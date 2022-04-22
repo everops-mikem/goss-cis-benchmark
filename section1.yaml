@@ -25,7 +25,7 @@ gossfile:
 
 command:
   {{- range $k,$v := dict "cramfs" "1.1.1.1" "freevxfs" "1.1.1.2" "jffs" "1.1.1.3" "hfs" "1.1.1.4" "hfsplus" "1.1.1.5" "udf" "1.1.1.7" "usb-storage" "1.1.24"}}
-  modprobe --show-depends -n -v {{$k}} 2>&1 | grep -E 'Module {{$k}} not found|install\s+/bin/(true|false)':
+  modprobe -n -v {{$k}} 2>&1 | grep -E 'Module {{$k}} not found|install\s+/bin/(true|false)':
     exit-status: 0
     title: '{{$v}} Ensure mounting of {{$k}} filesystems is disabled'
     meta:
@@ -42,7 +42,7 @@ command:
   {{end}}
 
   {{- range $k,$v := dict "squashfs" "1.1.1.6"}}
-  modprobe -n -v {{$k}} 2>&1 | grep -E 'Module {{$k}} not found|install\s+/bin/(true|false)':
+  modprobe --show-depends -n -v {{$k}} 2>&1 | grep -E 'Module {{$k}} not found|install\s+/bin/(true|false)':
     exit-status: 0
     title: '{{$v}} Ensure mounting of {{$k}} filesystems is disabled'
     meta:
