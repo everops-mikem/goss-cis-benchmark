@@ -150,7 +150,7 @@ file:
     contains:
       - "pam_pwquality.so retry=3"     # 5.4.1
       - "pam_pwhistory.so remember=5"  # 5.4.3
-      - "pam_unix.so sha512"           # 5.4.4
+      - /pam_unix.so\s+.*sha512/       # 5.4.4
     title: "5.4.3 and 5.4.4 Limit password reuse and ensure sha512 hashing"
     meta:
       item:
