@@ -164,9 +164,9 @@ file:
     owner: root
     group: root
     contains:
-      - "PASS_MAX_DAYS   365"
-      - "PASS_MIN_DAYS   1"
-      - "PASS_WARN_AGE   7"
+      - /^PASS_MAX_DAYS\s+365$/
+      - /^PASS_MIN_DAYS\s+1$/
+      - /^PASS_WARN_AGE\s+7$/
     title: "5.5.1.1 thru 5.5.1.3 Enforce password requirements"
     meta:
       item:
