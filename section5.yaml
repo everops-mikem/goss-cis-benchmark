@@ -233,10 +233,11 @@ command:
   sshd -T:
     exit-status: 0
     stdout:
-      - /(?i:Protocol\s+2)$/
+# Modern versions of Ubuntu (18+) and Amazon Linux have removed v1 support
+#      - /(?i:Protocol\s+2)$/
       - /(?i:LogLevel\s+INFO)$/
       - /(?i:X11Forwarding\s+no)$/
-      - /(?i:MaxAuthTries\s+4)$/
+      - /(?i:MaxAuthTries\s+6)$/
       - /(?i:IgnoreRhosts\s+yes)$/
       - /(?i:HostbasedAuthentication\s+no)$/
       - /(?i:PermitRootLogin\s+no)$/
@@ -246,7 +247,7 @@ command:
       - /(?i:MACs\s+hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256)$/
       - /(?i:KexAlgorithms\s+curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellmangroup14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffiehellman-group-exchange-sha256)$/
       - /(?i:ClientAliveInterval\s+300)$/
-      - /(?i:ClientAliveCountMax\s+0)$/
+      - /(?i:ClientAliveCountMax\s+3)$/
       - /(?i:LoginGraceTime\s+60)$/
       - /(?i:Banner\s+\/etc\/issue.net)$/
       - /(?i:DenyUsers\s+root)$/
