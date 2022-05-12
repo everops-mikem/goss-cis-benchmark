@@ -128,6 +128,17 @@ file:
         - "5.1.9"
       level: 1
 
+  /etc/ssh/sshd_config:
+    exists: true
+    mode: "0600"
+    owner: root
+    group: root
+    title: "5.3.1 Ensure permissions on /etc/ssh/sshd_config are configured"
+    meta:
+      item:
+        - "5.3.1"
+      level: 1
+
   /etc/security/pwquality.conf:
     exists: true
     mode: "0644"
@@ -237,7 +248,7 @@ command:
 #      - /^(?i:Protocol\s+2)$/
       - /^(?i:LogLevel\s+INFO)$/
       - /^(?i:X11Forwarding\s+no)$/
-      - /^(?i:MaxAuthTries\s+6)$/
+      - /^(?i:MaxAuthTries\s+4)$/
       - /^(?i:IgnoreRhosts\s+yes)$/
       - /^(?i:HostbasedAuthentication\s+no)$/
       - /^(?i:PermitRootLogin\s+no)$/
@@ -256,10 +267,9 @@ command:
       - /^(?i:AllowTcpForwarding\s+no)$/
       - /^(?i:MaxStartups\s+10:30:100)$/
       - /^(?i:MaxSessions\s+10)$/
-    title: "5.3.1 and 5.3.5 thru 5.3.22 Configure SSH Server"
+    title: "5.3.5 thru 5.3.22 Configure SSH Server"
     meta:
       item:
-        - "5.3.1"
         - "5.3.5"
         - "5.3.6"
         - "5.3.7"
