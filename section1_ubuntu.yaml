@@ -28,6 +28,7 @@ command:
 
   # prints rendered motd for update-motd facility in ubuntu
   run-parts --lsbsysinit /etc/update-motd.d:
+    timeout: 30000
     exit-status: 0
     stdout:
       - "WARNING: THIS IS A PRIVATE COMPUTER SYSTEM FOR USE BY ZENDESK"
