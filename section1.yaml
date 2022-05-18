@@ -6,7 +6,7 @@
 # 1 Initial Setup
 # 1.1.10 /var is a separate partition - level 2 (not implemented)
 # 1.1.11 thru 1.1.14 /var/tmp is a separate partition with appropriate options - level 2 (not implemented)
-# 1.1.15 /var/logs is a separate partition - level 2 (not implemented)
+# 1.1.15 /var/log is a separate partition - level 2 (not implemented)
 # 1.1.16 /var/audit is a separate partition - level 2 (not implemented)
 # 1.1.17 & 1.1.18 /home is a separate partition with nodev option - level 2 (not implemented)
 # 1.1.19 thru 1.1.21 set appropriate options on removable media partitions (not implemented)
@@ -87,6 +87,113 @@ command:
       item:
         - '1.9'
       level: 1
+
+  /var is a separate partition:
+    skip: true
+    exec: true
+    title: "1.1.10 /var is a separate partition"
+    meta:
+      item:
+        - "1.1.10"
+      level: 2
+      skip-reason: Not Implemented
+
+  /var/tmp is a separate partition with appropriate options:
+    skip: true
+    exec: true
+    title: "1.1.11 /var/tmp is a separate partition with appropriate options"
+    meta:
+      item:
+        - "1.1.11"
+        - "1.1.12"
+        - "1.1.13"
+        - "1.1.14"
+      level: 2
+      skip-reason: Not Implemented
+
+  /var/log is a separate partition:
+    skip: true
+    exec: true
+    title: "1.1.15 /var/log is a separate partitions"
+    meta:
+      item:
+        - "1.1.15"
+      level: 2
+      skip-reason: Not Implemented
+
+  /var/audit is a separate partition:
+    skip: true
+    exec: true
+    title: "1.1.16 /var/audit is a separate partition"
+    meta:
+      item:
+        - "1.1.16"
+      level: 2
+      skip-reason: Not Implemented
+
+  /home is a separate partition with nodev option:
+    skip: true
+    exec: true
+    title: "1.1.17 /home is a separate partition with nodev option"
+    meta:
+      item:
+        - "1.1.17"
+        - "1.1.18"
+      level: 2
+      skip-reason: Not Implemented
+
+  Set appropriate options on removable media partitions:
+    skip: true
+    exec: true
+    title: "1.1.19 Set appropriate options on removable media partitions"
+    meta:
+      item:
+        - "1.1.19"
+        - "1.1.20"
+        - "1.1.21"
+      level: 1
+      skip-reason: Not Implemented
+
+  Configure Software Updates:
+    skip: true
+    exec: true
+    title: "1.2 Configure Software Updates"
+    meta:
+      item:
+        - "1.2.1"
+        - "1.2.2"
+      level: 1
+      skip-reason: Manual validation required
+
+  Ensure bootloader password is set:
+    skip: true
+    exec: true
+    title: "1.4.2 Ensure bootloader password is set"
+    meta:
+      item:
+        - "1.4.2"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure authentication required for single user mode:
+    skip: true
+    exec: true
+    title: "1.4.4 Ensure authentication required for single user mode"
+    meta:
+      item:
+        - "1.4.4"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure all AppArmor Profiles are enforcing:
+    skip: true
+    exec: true
+    title: "1.6.1.4 Ensure all AppArmor Profiles are enforcing"
+    meta:
+      item:
+        - "1.6.4.1"
+      level: 2
+      skip-reason: Not Implemented
 
 mount:
   /tmp:
