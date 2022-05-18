@@ -339,3 +339,33 @@ command:
       item:
         - "6.2.17"
       level: 1
+
+  Audit system file permissions:
+    skip: true
+    exec: true
+    title: "6.1.1 Audit system file permissions"
+    meta:
+      item:
+        - "6.1.1"
+      level: 2
+      skip-reason: Manual validation required
+
+  Audit SUID executables:
+    skip: true
+    exec: true
+    title: "6.1.13 Audit SUID executables"
+    meta:
+      item:
+        - "6.1.13"
+      level: 1
+      skip-reason: Manual validation required
+
+  Audit SGID executables:
+    skip: true
+    exec: true
+    title: "6.1.14 Audit SGID executabless"
+    meta:
+      item:
+        - "6.1.14"
+      level: 1
+      skip-reason: Manual validation required
