@@ -323,6 +323,66 @@ command:
         - "5.5.1.5"
       level: 1
 
+  Ensure SSH access is limited:
+    skip: true
+    exec: true
+    title: "5.3.4 Ensure SSH access is limited"
+    meta:
+      item:
+        - "5.3.4"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure lockout for failed password attempts is configured:
+    skip: true
+    exec: true
+    title: "5.4.2 Ensure lockout for failed password attempts is configured"
+    meta:
+      item:
+        - "5.4.2"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure system accounts are secured:
+    skip: true
+    exec: true
+    title: "5.5.2 Ensure system accounts are secured"
+    meta:
+      item:
+        - "5.5.2"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure default user shell timeout is 900 seconds or less:
+    skip: true
+    exec: true
+    title: "5.5.5 Ensure default user shell timeout is 900 seconds or less"
+    meta:
+      item:
+        - "5.5.5"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure root login is restricted to system console:
+    skip: true
+    exec: true
+    title: "5.6 Ensure root login is restricted to system console"
+    meta:
+      item:
+        - "5.6"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure access to the su command is restricted:
+    skip: true
+    exec: true
+    title: "5.7 Ensure access to the su command is restricted"
+    meta:
+      item:
+        - "5.7"
+      level: 1
+      skip-reason: Not Implemented
+
 user:
   root:
     exists: true
