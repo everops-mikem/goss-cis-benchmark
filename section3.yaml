@@ -155,6 +155,46 @@ command:
       level: 2
   {{end}}
 
+  Ensure loopback traffic is configured:
+    skip: true
+    exec: true
+    title: "3.5.1.4 Ensure loopback traffic is configured"
+    meta:
+      item:
+        - "3.5.1.4"
+      level: 1
+      skip-reason: Not Implemented
+
+  Ensure outbound connections are configured:
+    skip: true
+    exec: true
+    title: "3.5.1.5 Ensure outbound connections are configured"
+    meta:
+      item:
+        - "3.5.1.5"
+      level: 1
+      skip-reason: Manual validation required
+
+  Ensure firewall rules exist for all open ports:
+    skip: true
+    exec: true
+    title: "3.5.1.6 Ensure firewall rules exist for all open ports"
+    meta:
+      item:
+        - "3.5.1.6"
+      level: 1
+      skip-reason: Manual validation required
+
+  Ensure default deny firewall policy:
+    skip: true
+    exec: true
+    title: "3.5.1.7 Ensure default deny firewall policy"
+    meta:
+      item:
+        - "3.5.1.7"
+      level: 1
+      skip-reason: Not Implemented
+
 package:
   {{- if eq .Vars.firewallPackage "ufw"}}
   {{.Vars.firewallPackage}}:
