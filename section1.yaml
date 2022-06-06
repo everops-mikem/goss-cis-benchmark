@@ -353,7 +353,7 @@ kernel-param:
 
   kernel.core_pattern:
     value:
-      match-regexp: core|\|/usr/share/apport/apport %p %s %c %d %P %E
+      match-regexp: core|\|/usr/share/apport/apport (?:-p)?%p (?:-s)?%s (?:-c)?%c (?:-d)?%d (?:-P)?%P (?:-u%u -g%g -- )?%E
     title: '1.5.4 Ensure core dumps are restricted'
     meta:
       item:
