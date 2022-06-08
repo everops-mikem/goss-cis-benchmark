@@ -53,7 +53,7 @@ The tests aim for validating compliance with the following CIS Benchmark version
 
 ## Requirements
 
-* [Goss](https://github.com/aelsabbahy/goss).
+* [Goss](https://github.com/aelsabbahy/goss)
 * Bash
 
 ## Usage
