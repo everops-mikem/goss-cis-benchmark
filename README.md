@@ -61,7 +61,7 @@ The tests aim for validating compliance with the following CIS Benchmark version
 ### Clone this repository
 
 ```shell
-git clone https://github.com/NeowayLabs/goss-cis-benchmark
+git clone https://github.com/everops-mikem/goss-cis-benchmark
 ```
 
 ### Execute all tests
