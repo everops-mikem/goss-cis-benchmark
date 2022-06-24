@@ -82,7 +82,7 @@ command:
       skip-reason: "Using {{.Vars.timeSyncPackage}} for time synchronization"
 
   # config file is specific for AL2, since we're using systemd-timesync on ubuntu
-  grep -E "^(server|pool)" /etc/chrony.conf:
+  chronyd -p | grep -E "^(server|pool)":
     exit-status: 0
     stdout:
       - '/^(?:server|pool)\s+\w+/'
